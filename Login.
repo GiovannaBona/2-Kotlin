@@ -1,0 +1,79 @@
+Para abrir um novo projeto File > New > Activity > Empty View Activity
+
+Android:id=editText = pegar o que o KT fez no XML
+Wrap_content para ajustar a altura e largura necessários
+Ems: 10 - Tamanho de letra
+InputType = text
+app:layoutcontraintEnd_toEnd="Parent" = que o final dele está em relação a string pai
+app:layoutcontraintStart_toStart="Parent"
+app:layoutcontraintTop_toTop="Parent"
+
+Alterar o ID nos atributos para fácil localização no código
+
+para pegar o XML e colocar no KT
+
+val usuario = findViewById<TextView>(R.id.login)
+val senha = findViewById<TextView>(R.id.senha)
+val senha = findViewById<Button>(R.id.btnLogin)
+
+botao.setOnClickListener(){
+	val usuarioFinal = usuario.getText()
+	val senhaDigitada = senha.getText()
+
+	if(usuarioDigitado=="admin" && senhaDigitada=="123"){
+	Intent(packageContext:this, MainActivity::class.java)
+	}
+
+	OU
+
+	if(usuario.getText().toString().equals("admin") && senha.getText().toString().equals("123")
+	var intencao = Intent(packageContext:this, MainActivity::class.java)
+	startActivity(intencao)
+	
+}
+
+Teoria da Intent:
+
+val intent = Intent(this, OutraAcao)
+
+startActivity(intent)
+this?.finish()
+
+Manifest é o que faz as modificações da tela: exemplo, da MainActivity2 para a MainActivity
+
+Toast = é uma forma de fazer um texto aparecer na tela
+
+package com.example.myfirstaplication
+
+import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+
+class MainActivity2 : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main2)
+
+
+    val usuario = findViewById<TextView>(R.id.login)
+    val senha = findViewById<TextView>(R.id.senha)
+    val botao = findViewById<Button>(R.id.btnLogin)
+
+    botao.setOnClickListener(){
+        val usuarioFinal = usuario.getText()
+        val senhaDigitada = senha.getText()
+
+        if(usuario.getText().toString().equals("admin") && (senha.getText().toString().equals("123"))){
+        var intencao = Intent(this, MainActivity::class.java)
+        startActivity(intencao)
+
+        }
+        else{
+            Toast.makeText(this, "Usuário ou Senha incorretos.", Toast.LENGTH_SHORT).show()
+        }
+    }
+}
+}
